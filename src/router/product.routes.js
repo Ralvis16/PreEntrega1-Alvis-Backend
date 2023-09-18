@@ -10,7 +10,7 @@ ProductRouter.get("/", async (req, res) =>{
 })
 
 ProductRouter.get("/", async (req, res) =>{
-    let limit = parseInt(req.query.limit)
+    const limit = req.query.limit
     res.send(await product.getProducts(limit))
 })
 
