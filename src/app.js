@@ -10,6 +10,12 @@ const app = express();
 const PORT = 4000;
 const product = new ProductManager();
 
+const server = app.listen(PORT, () => {
+  console.log(`Server run Express port: ${PORT}`);
+});
+
+const io = new Server(server);
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
