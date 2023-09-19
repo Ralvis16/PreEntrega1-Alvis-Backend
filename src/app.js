@@ -5,16 +5,14 @@ import { engine } from "express-handlebars";
 import * as path from "path"
 import __dirname from "./utils.js";
 import ProductManager from "./controllers/ProductManager.js";
+import { Server } from "socket.io";
 
 const app = express();
-const PORT = 4000;
+const httpServer = app.listen(4000, () =>console.log("Listening on PORT 4000"));
 const product = new ProductManager();
 
-const server = app.listen(PORT, () => {
-  console.log(`Server run Express port: ${PORT}`);
-});
 
-const io = new Server(server);
+const socketServer = new Server(httpServer);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -26,6 +24,10 @@ app.set("views", path.resolve(__dirname + "/views"))
 
 // static
 app.use("/", express.static(__dirname + "/public"))
+
+socketServer.on("connection", socket =>{
+  console.log("Nuevo cliente conectado")
+})
 
 app.get("/", async (req, res) => {
   let allProducts = await product.getProducts()
@@ -46,7 +48,3 @@ app.get("/:id", async (req, res) => {
 
 app.use("/api/products", ProductRouter)
 app.use("/api/cart", CartRouter)
-
-app.listen(PORT, () => {
-  console.log(`Servidor Express Puerto ${PORT}`);
-});
