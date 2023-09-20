@@ -1,13 +1,17 @@
 <h1>Lista de Productos con websockets</h1>
+<form action="/productos" method="POST">
+    <input type="text" name="producto" placeholder="Producto">
+    <input type="text" name="descripcion" placeholder="Descripcion">
+    <input type="text" name="precio" placeholder="Precio">
+    <input type="submit" value="Enviar">
+</form>
 {{#each products}}
-    <h2>{{this.producto}}</h2>
-    <p>{{this.descripcion}}</p>
-    <p>{{this.precio}}</p>
-{{/each}}
-
-<div>
-    Todo listo con websockets
+<div class="List">
+    <h2>Producto: {{this.producto}}</h2>
+    <p>Descripcion: {{this.descripcion}}</p>
+    <p>Precio: {{this.precio}}</p>
+    <p>Id: {{this.id}}</p>
 </div>
-
+{{/each}}
 <script src="/socket.io/socket.io.js"></script>
 <script src="/js/index.js"></script>

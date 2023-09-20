@@ -25,9 +25,10 @@ app.set("views", path.resolve(__dirname + "/views"))
 // static
 app.use("/", express.static(__dirname + "/public"))
 
-socketServer.on("connection", socket =>{
-  console.log("Nuevo cliente conectado")
-})
+
+socketServer.on("connection", (socket) => {
+  console.log("Un cliente se ha conectado");
+  });
 
 app.get("/", async (req, res) => {
   let allProducts = await product.getProducts()

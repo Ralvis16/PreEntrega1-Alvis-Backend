@@ -1,3 +1,26 @@
 body {
     background-color: antiquewhite;
+    color: black;
+}
+
+.List {
+    text-align: left;
+    padding-left: 100px;
+}
+
+h1 {
+    text-align: left;
+    padding-left: 50px;
+}
+
+h2 {
+    text-align: left;
+} 
+
+p {
+    text-align: left;
+}
+
+form {
+    text-align: center;
 }
